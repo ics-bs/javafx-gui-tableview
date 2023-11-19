@@ -171,6 +171,10 @@ public class ProjectsViewController {
 
     @FXML
     public void handleButtonProjectDeleteAction(ActionEvent event) {
+        /*
+         * Retrieve the selected project from the table view
+         * via the selection model.
+         */
         Project selectedProject = tableViewProject.getSelectionModel().getSelectedItem();
         if (selectedProject != null) {
             projectRegister.removeProject(selectedProject);
