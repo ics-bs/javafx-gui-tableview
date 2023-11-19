@@ -60,5 +60,12 @@
                prefWidth="750.0" 
                text="Response"
                visible="true" />
+        <Label fx:id="labelCellsAreEditable" 
+               layoutX="420.0" 
+               layoutY="550.0" 
+               prefHeight="25.0" 
+               prefWidth="750.0" 
+               text="Double click a cell to edit it. Enter to save."
+               visible="true" />
     </children>
 </AnchorPane>
