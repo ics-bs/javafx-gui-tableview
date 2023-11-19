@@ -25,6 +25,10 @@ public class Project {
     public void addEmployee(Employee employee) {
         this.employees.add(employee);
     }
+    
+    public void removeEmployee(Employee employee) {
+        this.employees.remove(employee);
+    }
 
     public void addBatchEmployees(Employee[] employees) {
         this.employees.addAll(employees);
