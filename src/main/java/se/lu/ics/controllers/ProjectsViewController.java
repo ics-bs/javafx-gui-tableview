@@ -1,8 +1,8 @@
 package se.lu.ics.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
+import java.time.Period;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
@@ -15,11 +15,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.converter.DateStringConverter;
+
 import se.lu.ics.models.ProjectRegister;
-import se.lu.ics.models.Employee;
 import se.lu.ics.models.Project;
 
 public class ProjectsViewController {
@@ -54,6 +52,12 @@ public class ProjectsViewController {
     private Label labelResponse;
 
     public void initialize() {
+
+        /*
+         * The cell value factories are used to populate the table columns with data
+         * from the Project object. The argument "id" will cause the cell value factory
+         * to call the getId() method on the Project object.
+         */
         tableColumnProjectId.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         tableColumnProjectName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -63,29 +67,30 @@ public class ProjectsViewController {
         });
 
         tableColumnProjectStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-
         tableColumnProjectEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
+        /*
+         * The values in the duration columns are not based on the data in the
+         * Project object. Instead, the values are calculated based on the start and end
+         * dates of the project. This is why we need to use a custom cell factory.
+         */
         tableColumnProjectDuration.setCellValueFactory(cellData -> {
             Project project = cellData.getValue();
             LocalDate startDate = project.getStartDate();
             LocalDate endDate = project.getEndDate();
 
-            int years = endDate.getYear() - startDate.getYear();
-            int months = endDate.getMonthValue() - startDate.getMonthValue();
-            int days = endDate.getDayOfMonth() - startDate.getDayOfMonth();
-
-            if (days < 0) {
-                months--;
-                days += startDate.lengthOfMonth();
-            }
-
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
+            /*
+             * The duration is calculated by subtracting the start date from the end date.
+             * The result is a Period object, which contains the number of years, months,
+             * and days between the two dates.
+             */
+            Period period = Period.between(startDate, endDate);
+            int years = period.getYears();
+            int months = period.getMonths();
+            int days = period.getDays();
 
             String duration = years + " years, " + months + " months, " + days + " days";
+
             return new ReadOnlyObjectWrapper<>(duration);
         });
 
@@ -146,8 +151,8 @@ public class ProjectsViewController {
             stage.setTitle("Add Project");
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
-            /* 
+
+            /*
              * We cannot really explain
              * IOException to the user, and
              * they cannot correct issues

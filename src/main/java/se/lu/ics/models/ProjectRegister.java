@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 public class ProjectRegister {
     private ObservableList<Project> projects;
 
@@ -29,7 +30,13 @@ public class ProjectRegister {
         this.projects.remove(project);
     }
 
-    private void addTestData(){
+    /*
+     * This method is called to add test data to the ObservableList.
+     * Test data is used for testing purposes and
+     * demonstration purposes only and should be removed
+     * when the application is ready for production.
+     */
+    private void addTestData() {
 
         Employee emp1 = new Employee("E01", "Mia Torres", "Architect", 85000, LocalDate.of(2019, 5, 15));
         Employee emp2 = new Employee("E02", "Carlos Rivera", "Structural Engineer", 80000, LocalDate.of(2018, 8, 20));
@@ -42,26 +49,32 @@ public class ProjectRegister {
         Employee emp9 = new Employee("E09", "Luca Rossi", "Surveyor", 68000, LocalDate.of(2021, 3, 18));
         Employee emp10 = new Employee("E10", "Nadia Ali", "Interior Designer", 76000, LocalDate.of(2018, 12, 10));
         Employee emp11 = new Employee("E11", "Omar Farooq", "Foreman", 65000, LocalDate.of(2020, 6, 7));
-        Employee emp12 = new Employee("E12", "Sarah Johnson", "Environmental Consultant", 77000, LocalDate.of(2019, 3, 15));
+        Employee emp12 = new Employee("E12", "Sarah Johnson", "Environmental Consultant", 77000,
+                LocalDate.of(2019, 3, 15));
         Employee emp13 = new Employee("E13", "Diego Sánchez", "Quantity Surveyor", 71000, LocalDate.of(2017, 9, 20));
         Employee emp14 = new Employee("E14", "Leila Khaled", "HR Manager", 78000, LocalDate.of(2018, 11, 5));
         Employee emp15 = new Employee("E15", "Ivan Petrov", "Plumber", 58000, LocalDate.of(2020, 8, 30));
         Employee emp16 = new Employee("E16", "Zhang Wei", "Carpenter", 62000, LocalDate.of(2019, 2, 12));
         Employee emp17 = new Employee("E17", "Fatima Al-Fihri", "Site Inspector", 69000, LocalDate.of(2021, 4, 9));
         Employee emp18 = new Employee("E18", "Alex Johnson", "Mason", 55000, LocalDate.of(2018, 6, 18));
-        Employee emp19 = new Employee("E19", "Yasmin Mohammed", "Project Coordinator", 73000, LocalDate.of(2019, 7, 22));
+        Employee emp19 = new Employee("E19", "Yasmin Mohammed", "Project Coordinator", 73000,
+                LocalDate.of(2019, 7, 22));
         Employee emp20 = new Employee("E20", "Bruce Wayne", "Logistics Manager", 76000, LocalDate.of(2020, 12, 15));
 
-        Project proj1 = new Project("P01", "Skyline Residential Towers", LocalDate.of(2023, 1, 1), LocalDate.of(2024, 1, 1), 2000000);
-        Project proj2 = new Project("P02", "Greenfield Commercial Plaza", LocalDate.of(2023, 4, 1), LocalDate.of(2024, 4, 1), 1800000);
-        Project proj3 = new Project("P03", "Harborfront Leisure Complex", LocalDate.of(2023, 6, 1), LocalDate.of(2024, 8, 30), 2500000);
-        Project proj4 = new Project("P04", "Downtown Bridge Reconstruction", LocalDate.of(2023, 2, 15), LocalDate.of(2023, 12, 15), 1500000);
+        Project proj1 = new Project("P01", "Skyline Residential Towers", LocalDate.of(2023, 1, 1),
+                LocalDate.of(2024, 1, 1), 2000000);
+        Project proj2 = new Project("P02", "Greenfield Commercial Plaza", LocalDate.of(2023, 4, 1),
+                LocalDate.of(2024, 4, 1), 1800000);
+        Project proj3 = new Project("P03", "Harborfront Leisure Complex", LocalDate.of(2023, 6, 1),
+                LocalDate.of(2024, 8, 30), 2500000);
+        Project proj4 = new Project("P04", "Downtown Bridge Reconstruction", LocalDate.of(2023, 2, 15),
+                LocalDate.of(2023, 12, 15), 1500000);
 
         // Assigning Employees to Projects
-        proj1.addBatchEmployees(new Employee[] {emp1, emp2, emp3, emp4, emp5});
-        proj2.addBatchEmployees(new Employee[] {emp6, emp7, emp8, emp9, emp10});
-        proj3.addBatchEmployees(new Employee[] {emp11, emp12, emp13, emp14, emp15});
-        proj4.addBatchEmployees(new Employee[] {emp16, emp17, emp18, emp19, emp20});
+        proj1.addBatchEmployees(new Employee[] { emp1, emp2, emp3, emp4, emp5 });
+        proj2.addBatchEmployees(new Employee[] { emp6, emp7, emp8, emp9, emp10 });
+        proj3.addBatchEmployees(new Employee[] { emp11, emp12, emp13, emp14, emp15 });
+        proj4.addBatchEmployees(new Employee[] { emp16, emp17, emp18, emp19, emp20 });
 
         // Adding Projects to Employee
         emp1.setProject(proj1);
@@ -90,5 +103,4 @@ public class ProjectRegister {
 
         this.projects.addAll(proj1, proj2, proj3, proj4);
     }
-    
 }
