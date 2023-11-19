@@ -50,6 +50,11 @@
                 layoutY="575.0" 
                 onAction="#handleButtonProjectDeleteAction" 
                 text="Delete" />
+        <Button fx:id="buttonProjectViewEmployees"
+                layoutX="185.0" 
+                layoutY="575.0" 
+                onAction="#handleButtonViewEmployeesAction" 
+                text="View employees" />
         <ComboBox fx:id="comboBoxProjectIncreaseBudget" 
                 layoutX="875" 
                 layoutY="575" 
@@ -67,7 +72,7 @@
                text="Response"
                visible="false" />
         <Label fx:id="labelDisclaimer" 
-               layoutX="250.0" 
+               layoutX="310.0" 
                layoutY="560.0" 
                prefHeight="90.0" 
                maxWidth="400.0"
