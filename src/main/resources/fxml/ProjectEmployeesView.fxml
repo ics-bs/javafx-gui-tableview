@@ -15,29 +15,29 @@
             fx:controller="se.lu.ics.controllers.ProjectEmployeesViewController">
     <children>
         <TableView fx:id="tableViewEmployee" 
-                   layoutX="75.0" 
-                   layoutY="50.0" 
-                   prefHeight="500.0" 
-                   prefWidth="950.0"
-                   editable="true">
+                    layoutX="75.0" 
+                    layoutY="50.0" 
+                    prefHeight="500.0" 
+                    prefWidth="950.0"
+                    editable="true">
             <columns>
                 <TableColumn fx:id="tableColumnEmployeeId" 
-                             text="Id" />
+                                text="Id" />
                 <TableColumn fx:id="tableColumnEmployeeName" 
-                             text="Name" 
-                             editable="true"/>
+                                text="Name" 
+                                editable="true"/>
                 <TableColumn fx:id="tableColumnEmployeeTitle" 
-                             text="Title" 
-                             editable="true"/>
+                                text="Title" 
+                                editable="true"/>
                 <TableColumn fx:id="tableColumnEmployeeBaseSalary" 
-                             text="Salary" 
-                             editable="true"/>
+                                text="Salary" 
+                                editable="true"/>
                 <TableColumn fx:id="tableColumnEmployeeHireDate" 
-                             text="Hired on" />
+                                text="Hired on" />
                 <TableColumn fx:id="tableColumnEmployeeTimeWithCompany" 
-                             text="Employed for" />
+                                text="Employed for" />
                 <TableColumn fx:id="tableColumnEmployeeCurrentProject" 
-                             text="Current project" />
+                                text="Current project" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
