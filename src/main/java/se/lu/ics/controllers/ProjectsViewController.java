@@ -183,7 +183,7 @@ public class ProjectsViewController {
     @FXML
     public void handleButtonProjectIncreaseBudgetAction(ActionEvent event) {
         Project selectedProject = comboBoxProjectIncreaseBudget.getSelectionModel().getSelectedItem();
-        
+
         if (selectedProject != null) {
             double currentBudget = selectedProject.getBudget();
             double newBudget = currentBudget * 1.1;

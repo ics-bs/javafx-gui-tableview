@@ -11,7 +11,7 @@ import se.lu.ics.controllers.ProjectsViewController;
 import se.lu.ics.models.ProjectRegister;
 
 public class App extends Application {
-    
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -41,7 +41,7 @@ public class App extends Application {
         controller.setProjectRegister(projectRegister);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Consultants");
+        primaryStage.setTitle("Projects");
         primaryStage.show();
     }
 }

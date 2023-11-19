@@ -14,31 +14,30 @@
             fx:controller="se.lu.ics.controllers.ProjectsViewController">
     <children>
         <TableView fx:id="tableViewProject" 
-                   layoutX="75.0" 
-                   layoutY="50.0" 
-                   prefHeight="500.0" 
-                   prefWidth="950.0"
-                   editable="true">
-            <columns>
-                <TableColumn fx:id="tableColumnProjectId" 
-                             text="Id" />
-                <TableColumn fx:id="tableColumnProjectName" 
-                             text="Name" 
-                             editable="true"/>
-                <TableColumn fx:id="tableColumnProjectStartDate" 
-                             text="Start" 
-                             editable="true"/>
-                <TableColumn fx:id="tableColumnProjectEndDate" 
-                             text="End" 
-                             editable="true"/>
-                <TableColumn fx:id="tableColumnProjectDuration" 
-                             text="Duration" />
-                <TableColumn fx:id="tableColumnProjectBudget" 
-                             text="Budget" />
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
+                        layoutX="75.0" 
+                        layoutY="50.0" 
+                        prefHeight="500.0" 
+                        prefWidth="950.0">
+                <columns>
+                        <TableColumn fx:id="tableColumnProjectId" 
+                                        text="Id" />
+                        <TableColumn fx:id="tableColumnProjectName" 
+                                        text="Name" 
+                                        editable="true"/>
+                        <TableColumn fx:id="tableColumnProjectStartDate" 
+                                        text="Start" 
+                                        editable="true"/>
+                        <TableColumn fx:id="tableColumnProjectEndDate" 
+                                        text="End" 
+                                        editable="true"/>
+                        <TableColumn fx:id="tableColumnProjectDuration" 
+                                        text="Duration" />
+                        <TableColumn fx:id="tableColumnProjectBudget" 
+                                        text="Budget" />
+                </columns>
+                <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
         </TableView>
         <Button fx:id="buttonAddProject" 
                 layoutX="75.0" 

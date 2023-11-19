@@ -32,9 +32,6 @@ public class ProjectAddDialogController {
     @FXML
     private Label labelResponse;
 
-    public void initialize() {
-    }
-
     public void setProjectRegister(ProjectRegister projectRegister) {
         this.projectRegister = projectRegister;
     }
