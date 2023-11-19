@@ -179,6 +179,7 @@ public class ProjectsViewController {
     @FXML
     public void handleButtonProjectIncreaseBudgetAction(ActionEvent event) {
         Project selectedProject = comboBoxProjectIncreaseBudget.getSelectionModel().getSelectedItem();
+        
         if (selectedProject != null) {
             double currentBudget = selectedProject.getBudget();
             double newBudget = currentBudget * 1.1;
@@ -191,6 +192,43 @@ public class ProjectsViewController {
         } else {
             String message = "Please select a project.";
             labelResponse.setText(message);
+            labelResponse.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void handleButtonViewEmployeesAction(ActionEvent event) {
+        Project selectedProject = tableViewProject.getSelectionModel().getSelectedItem();
+
+        /*
+         * If no project is selected, selectedProject will be null, and
+         * we cannot show the employees for the project.
+         * Instead, we show an error message to the user.
+         */
+        if (selectedProject == null) {
+            String message = "Please select a project.";
+            labelResponse.setText(message);
+            labelResponse.setVisible(true);
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProjectEmployeesView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+
+            ProjectEmployeesViewController controller = loader.getController();
+
+            controller.setProject(selectedProject);
+
+            String projectName = selectedProject.getName();
+
+            stage.setTitle("Employees for project " + projectName);
+            stage.show();
+        } catch (IOException e) {
+
+            String errorMessage = "Internal system error, please contact support.";
+            labelResponse.setText(errorMessage);
             labelResponse.setVisible(true);
         }
     }
