@@ -15,6 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import se.lu.ics.models.ProjectRegister;
@@ -142,14 +143,17 @@ public class ProjectsViewController {
     public void handleButtonProjectAddAction(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProjectAddDialog.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
+            Stage modalStage = new Stage();
+            modalStage.setScene(new Scene(loader.load()));
 
             ProjectAddDialogController controller = loader.getController();
             controller.setProjectRegister(projectRegister);
 
-            stage.setTitle("Add Project");
-            stage.show();
+            modalStage.setTitle("Add Project");
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            Stage currentStage = (Stage) tableViewProject.getScene().getWindow();
+            modalStage.initOwner(currentStage);
+            modalStage.showAndWait();
         } catch (IOException e) {
 
             /*
@@ -214,8 +218,8 @@ public class ProjectsViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProjectEmployeesView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
+            Stage modalStage = new Stage();
+            modalStage.setScene(new Scene(loader.load()));
 
             ProjectEmployeesViewController controller = loader.getController();
 
@@ -223,8 +227,11 @@ public class ProjectsViewController {
 
             String projectName = selectedProject.getName();
 
-            stage.setTitle("Employees for project " + projectName);
-            stage.show();
+            modalStage.setTitle("Employees for project " + projectName);
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            Stage currentStage = (Stage) tableViewProject.getScene().getWindow();
+            modalStage.initOwner(currentStage);
+            modalStage.showAndWait();
         } catch (IOException e) {
 
             String errorMessage = "Internal system error, please contact support.";
