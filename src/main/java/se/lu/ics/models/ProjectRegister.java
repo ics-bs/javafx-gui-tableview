@@ -9,6 +9,7 @@ public class ProjectRegister {
 
     public ProjectRegister() {
         this.projects = FXCollections.observableArrayList();
+        addTestData();
     }
 
     /*
@@ -22,6 +23,10 @@ public class ProjectRegister {
 
     public void addProject(Project project) {
         this.projects.add(project);
+    }
+
+    public void removeProject(Project project) {
+        this.projects.remove(project);
     }
 
     private void addTestData(){
