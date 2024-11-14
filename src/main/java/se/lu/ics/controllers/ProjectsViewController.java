@@ -7,17 +7,12 @@ import java.time.Period;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import se.lu.ics.models.AppModel;
 import se.lu.ics.models.Project;
 
@@ -209,7 +204,7 @@ public class ProjectsViewController {
             labelResponse.setVisible(true);
             return;
         }
-        
+
         try {
             appController.showProjectEmployeesView(selectedProject);
         } catch (IOException e) {

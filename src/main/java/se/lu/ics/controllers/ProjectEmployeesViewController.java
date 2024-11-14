@@ -13,13 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import se.lu.ics.models.AppModel;
 import se.lu.ics.models.Employee;
 import se.lu.ics.models.Project;
 
 public class ProjectEmployeesViewController {
-
-    private AppController appController;
 
     /*
      * The project for which the employees are to be displayed.
@@ -191,9 +188,5 @@ public class ProjectEmployeesViewController {
     public void setProject(Project project) {
         this.project = project;
         populateTableView();
-    }
-
-    public void setAppController(AppController appController) {
-        this.appController = appController;
     }
 }
