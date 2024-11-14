@@ -18,12 +18,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import se.lu.ics.models.ProjectRegister;
+import se.lu.ics.models.AppModel;
 import se.lu.ics.models.Project;
 
 public class ProjectsViewController {
 
-    private ProjectRegister projectRegister;
+    private AppModel appModel;
+    private AppController appController;
 
     @FXML
     private TableView<Project> tableViewProject;
@@ -142,18 +143,7 @@ public class ProjectsViewController {
     @FXML
     public void handleButtonProjectAddAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProjectAddDialog.fxml"));
-            Stage modalStage = new Stage();
-            modalStage.setScene(new Scene(loader.load()));
-
-            ProjectAddDialogController controller = loader.getController();
-            controller.setProjectRegister(projectRegister);
-
-            modalStage.setTitle("Add Project");
-            modalStage.initModality(Modality.APPLICATION_MODAL);
-            Stage currentStage = (Stage) tableViewProject.getScene().getWindow();
-            modalStage.initOwner(currentStage);
-            modalStage.showAndWait();
+            appController.showProjectAddDialog();
         } catch (IOException e) {
 
             /*
@@ -177,7 +167,7 @@ public class ProjectsViewController {
          */
         Project selectedProject = tableViewProject.getSelectionModel().getSelectedItem();
         if (selectedProject != null) {
-            projectRegister.removeProject(selectedProject);
+            appModel.getProjectRegister().removeProject(selectedProject);
             String message = "Project deleted successfully.";
             labelResponse.setText(message);
             labelResponse.setVisible(true);
@@ -219,43 +209,33 @@ public class ProjectsViewController {
             labelResponse.setVisible(true);
             return;
         }
-
+        
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProjectEmployeesView.fxml"));
-            Stage modalStage = new Stage();
-            modalStage.setScene(new Scene(loader.load()));
-
-            ProjectEmployeesViewController controller = loader.getController();
-
-            controller.setProject(selectedProject);
-
-            String projectName = selectedProject.getName();
-
-            modalStage.setTitle("Employees for project " + projectName);
-            modalStage.initModality(Modality.APPLICATION_MODAL);
-            Stage currentStage = (Stage) tableViewProject.getScene().getWindow();
-            modalStage.initOwner(currentStage);
-            modalStage.showAndWait();
+            appController.showProjectEmployeesView(selectedProject);
         } catch (IOException e) {
-
             String errorMessage = "Internal system error, please contact support.";
             labelResponse.setText(errorMessage);
             labelResponse.setVisible(true);
-        }
+        }      
     }
 
     private void populateTableView() {
         tableViewProject.getItems().clear();
-        tableViewProject.setItems(projectRegister.getProjects());
+        tableViewProject.setItems(appModel.getProjectRegister().getProjects());
     }
 
     private void populateComboBox() {
         comboBoxProjectIncreaseBudget.getItems().clear();
-        comboBoxProjectIncreaseBudget.setItems(projectRegister.getProjects());
+        comboBoxProjectIncreaseBudget.setItems(appModel.getProjectRegister().getProjects());
     }
 
-    public void setProjectRegister(ProjectRegister projectRegister) {
-        this.projectRegister = projectRegister;
+    public void setAppController(AppController appController) {
+        this.appController = appController;
+    }
+
+    public void setAppModel(AppModel appModel) {
+        this.appModel = appModel;
+
         populateTableView();
         populateComboBox();
     }

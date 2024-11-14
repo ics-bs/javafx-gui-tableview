@@ -3,6 +3,11 @@ package se.lu.ics.models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/*
+ * This class is currently not used in the application.
+ * However if we would want to create a view for all employees
+ * in the application, we would need a class like this.
+ */
 public class EmployeeRegister {
     private ObservableList<Employee> employees;
 

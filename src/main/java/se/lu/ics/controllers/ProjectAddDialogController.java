@@ -8,11 +8,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import se.lu.ics.models.AppModel;
 import se.lu.ics.models.Project;
-import se.lu.ics.models.ProjectRegister;
 
 public class ProjectAddDialogController {
-    private ProjectRegister projectRegister;
+    private AppModel appModel;
 
     @FXML
     private TextField textFieldProjectId;
@@ -32,10 +32,6 @@ public class ProjectAddDialogController {
     @FXML
     private Label labelResponse;
 
-    public void setProjectRegister(ProjectRegister projectRegister) {
-        this.projectRegister = projectRegister;
-    }
-
     @FXML
     public void handleButtonProjectSaveAction(ActionEvent event) {
 
@@ -52,15 +48,15 @@ public class ProjectAddDialogController {
         } catch (NumberFormatException e) {
             isTextFieldProjectBudgetNumber = false;
         }
-        
-        if (isTextFieldProjectIdEmpty 
-            || isTextFieldProjectNameEmpty 
-            || isDatePickerProjectStartDateEmpty
-            || isDatePickerProjectEndDateEmpty 
-            || isTextFieldProjectBudgetEmpty) {
-                String errorMessage = "Please fill in all fields.";
-                labelResponse.setText(errorMessage);
-                labelResponse.setVisible(true);
+
+        if (isTextFieldProjectIdEmpty
+                || isTextFieldProjectNameEmpty
+                || isDatePickerProjectStartDateEmpty
+                || isDatePickerProjectEndDateEmpty
+                || isTextFieldProjectBudgetEmpty) {
+            String errorMessage = "Please fill in all fields.";
+            labelResponse.setText(errorMessage);
+            labelResponse.setVisible(true);
         } else if (!isTextFieldProjectBudgetNumber) {
             String errorMessage = "Please enter a number in the budget field.";
             labelResponse.setText(errorMessage);
@@ -75,7 +71,7 @@ public class ProjectAddDialogController {
 
             Project newProject = new Project(id, name, startDate, endDate, budgetDouble);
 
-            projectRegister.addProject(newProject);
+            appModel.getProjectRegister().addProject(newProject);
 
             textFieldProjectId.clear();
             textFieldProjectName.clear();
@@ -93,5 +89,9 @@ public class ProjectAddDialogController {
     public void handleButtonBackAction(ActionEvent event) {
         Stage stage = (Stage) textFieldProjectId.getScene().getWindow();
         stage.close();
+    }
+
+    public void setAppModel(AppModel appModel) {
+        this.appModel = appModel;
     }
 }
